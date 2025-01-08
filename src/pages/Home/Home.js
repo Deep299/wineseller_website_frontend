@@ -1,10 +1,11 @@
 import  './Home.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from '../ProductCard/ProductCard';
 import ProductService from '../../Services/ProductService';
 
 const Home = () => {
+  console.log(1);
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const navigate = useNavigate();
@@ -22,17 +23,26 @@ const Home = () => {
 
   const categories = [...new Set(products.map(product => product.category))];
 
-  const handleCategoryClick = (category) => {
+  const handleCategoryClick = useCallback((category) => {
     setSelectedCategory(category);
-  };
-  const handleCartIconClick = () => {
-    navigate('/Cart'); 
+  }, []);
+  const handleCartIconClick = (action) => {
+    switch (action) {
+      case "Cart":
+        navigate("/Cart");
+        break;
+      case "Wishlist":
+        navigate("/Wishlist");
+        break;
+      default:
+        return;
+    }
   };
   return (
     <div>
        <header className="header-icons">
-        <i className="fas fa-shopping-cart" onClick={handleCartIconClick}></i>
-        <i className="fas fa-heart"></i>
+        <i className="fas fa-shopping-cart" onClick={() => handleCartIconClick('Cart')}></i>
+        <i className="fas fa-heart" onClick={() => handleCartIconClick('Wishlist')}></i>
       </header>
       <div className="category-tabs">
         {categories.map(category => (

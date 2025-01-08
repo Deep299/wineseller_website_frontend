@@ -105,3 +105,6 @@
     font-size: 16px;
     font-weight: bold;
   }
+  .action-button.in-wishlist {
+    background-color: red;
+  }

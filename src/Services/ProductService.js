@@ -56,6 +56,27 @@ import config from '../config.js';
       return cartProducts;
     }
 
+    static handleAddToWishlist(product,Inventory) {
+      const wishlistProducts = JSON.parse(localStorage.getItem('wishlistProducts')) || [];
+      const existingProductIndex = wishlistProducts.findIndex( wishlistProduct => wishlistProduct.SKU === Inventory.SKU);
+  
+      if (existingProductIndex === -1) {
+        wishlistProducts.push({ 
+          id: product.id,
+          name: product.name,
+          img: product.img,
+          description: product.description,
+          SKU: Inventory.SKU,
+          price: Inventory.price,
+          size: Inventory.size,
+        });
+        localStorage.setItem('wishlistProducts', JSON.stringify(wishlistProducts));
+      }
+      else{
+        wishlistProducts.splice(existingProductIndex, 1);
+        localStorage.setItem('wishlistProducts', JSON.stringify(wishlistProducts));
+      }
+    }
   }
   
   
