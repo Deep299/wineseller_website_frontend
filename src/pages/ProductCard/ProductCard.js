@@ -42,7 +42,7 @@ const ProductCard = ({ product }) => {
     setWishlistProducts(updatedWishlistProducts);
   };
   const handleProductClick = () => {
-    navigate(`/product/${product.id}`);
+    navigate(`/product/${product.ProductId}`);
   };
   const existingProduct = cartProducts.find(cartProduct => cartProduct.SKU === firstInventory?.SKU);
   const isInWishlist = wishlistProducts.some(wishlistProduct => wishlistProduct.SKU === firstInventory?.SKU);

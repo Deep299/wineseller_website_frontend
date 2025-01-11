@@ -1,11 +1,12 @@
 import config from '../config.js';
+import products from '../assets/JesonSet/Product.json';
   
   class ProductService {
 
 
     static async getProducts() {
-        const response = await fetch(`${config.apiBaseUrl}/product/get`);
-    const products = await response.json();
+       // const response = await fetch(`${config.apiBaseUrl}/product/get`);
+    //const products = await response.json();
     if (JSON.stringify(products) !== JSON.stringify(JSON.parse(localStorage.getItem('products')))) {
       localStorage.setItem('products', JSON.stringify(products));
     }
