@@ -3,6 +3,7 @@ import "./ProductCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus, faHeart, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import ProductService from '../../Services/ProductService';
+import fixedImage from '../../assets/Products/Noimage.png';
 import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
@@ -48,12 +49,24 @@ const ProductCard = ({ product }) => {
   const isInWishlist = wishlistProducts.some(wishlistProduct => wishlistProduct.SKU === firstInventory?.SKU);
   return (
     <div className="product-card" onClick={handleProductClick}>
+      <div className="image-container">
+      <img src={fixedImage} alt={product.name} className="product-image" />
+      <div className="wishlist-icon">
+        <button className={`wishlist-button ${isInWishlist ? 'in-wishlist' : ''}`} onClick={(e) => { e.stopPropagation(); handleAddToWishlist(); }}>
+          <FontAwesomeIcon icon={faHeart} />
+        </button>
+      </div>
+      </div>
+      
+      
       <h2>{product.name}</h2>
-      <img src={product.img} alt={product.name} className="product-image" />
       {firstInventory ? (
         <>
           <p>Price: ${firstInventory.price}</p>
           <p>Size: {firstInventory.size}</p>
+          <p className="stock-status available">
+              <span className="status-dot"></span> In stock
+            </p>
           <div className="product-actions">
           {existingProduct ? (
               <div className="quantity-controls">
@@ -70,13 +83,12 @@ const ProductCard = ({ product }) => {
                 <FontAwesomeIcon icon={faCartPlus} /> Add to Cart
               </button>
             )}
-            <button className={`action-button ${isInWishlist ? 'in-wishlist' : ''}`} onClick={(e) => {e.stopPropagation(); handleAddToWishlist()}}>
-              <FontAwesomeIcon icon={faHeart} /> {isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
-            </button>
           </div>
         </>
       ) : (
-        <p>Out of stock</p>
+        <p className="stock-status out-of-stock">
+          <span className="status-dot"></span> Out of stock
+        </p>
       )}
     </div>
   );

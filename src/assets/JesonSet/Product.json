@@ -8,14 +8,14 @@
       "discount": "20%",
       "inventories": [
         {
-          "available": true,
+          "available": false,
           "price": 32.99,
           "SKU": "SKU11111",
           "tags": ["best selling", "discount"],
           "size": "M"
         },
         {
-          "available": true,
+          "available": false,
           "price": 42.99,
           "SKU": "SKU11112",
           "tags": ["best selling", "discount"],

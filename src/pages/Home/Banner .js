@@ -8,14 +8,6 @@ const images = {
   };
 
 const Banner = () => {
-  /*   const [currentImageIndex, setCurrentImageIndex] = useState(0); */
-
- /*  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); 
-    return () => clearInterval(interval);
-  }, []); */
 
   return (
     <div

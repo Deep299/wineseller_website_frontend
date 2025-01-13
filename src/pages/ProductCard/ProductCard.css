@@ -1,5 +1,4 @@
 .product-card {
-    border: 1px solid #ccc;
   padding: 16px;
   margin: 16px;
   border-radius: 8px;
@@ -26,12 +25,14 @@
 
   .product-list {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     justify-content: center;
+    gap: 20px;
   }
 
   .product-card {
-    border: 1px solid #ccc;
+    position: relative; 
     padding: 16px;
     margin: 16px;
     border-radius: 8px;
@@ -40,10 +41,13 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    flex: 0 0 auto;
+  width: 200px; 
   }
   
   .product-card h2 {
     margin: 0 0 8px;
+    font-size: 1em;
   }
   
   .product-card p {
@@ -52,8 +56,8 @@
   
   .product-image {
     max-width: 100%;
-    height: auto;
-    margin-bottom: 8px;
+    height: 250px;
+    margin-bottom: 5px;
   }
   
   .product-actions {
@@ -63,7 +67,7 @@
   }
   
   .action-button {
-    background-color: #007bff;
+    background-color: #000000;
     color: white;
     border: none;
     padding: 8px 16px;
@@ -74,7 +78,7 @@
   }
   
   .action-button:hover {
-    background-color: #0056b3;
+    background-color: #b30000;
   }
   
   .action-button .fa-icon {
@@ -88,7 +92,7 @@
   }
   
   .quantity-button {
-    background-color: #007bff;
+    background-color: #000000;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -98,7 +102,7 @@
   }
   
   .quantity-button:hover {
-    background-color: #0056b3;
+    background-color: #b30000;
   }
   
   .quantity {
@@ -108,3 +112,63 @@
   .action-button.in-wishlist {
     background-color: red;
   }
+
+  .wishlist-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+ 
+
+  .wishlist-button {
+    background-color: transparent; 
+    border: 2px solid rgba(255, 255, 255, 0); 
+    border-radius: 50%; 
+    padding: 10px; 
+    cursor: pointer;
+    color: #eda2a2; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+  }
+  
+  .wishlist-button .svg-inline--fa.fa-heart {
+    height: 20px; /* Increase the height of the heart icon */
+    width: 20px; /* Ensure the width is also increased proportionally */
+  }
+
+  .wishlist-button.in-wishlist .svg-inline--fa.fa-heart{
+    color: rgb(255, 6, 6); /* Ensure the icon color remains black when in wishlist */
+  }
+
+  .stock-status {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+  .available .status-dot {
+    background-color: green;
+  }
+  
+  .available {
+    color: green;
+  }
+  
+  .out-of-stock .status-dot {
+    background-color: gray;
+  }
+  
+  .out-of-stock {
+    color: gray;
+  }
+  
