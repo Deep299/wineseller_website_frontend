@@ -1,13 +1,14 @@
-import  './Home.css';
 import React, { useState, useEffect, useCallback } from 'react';
 import Header from '../Shared/Header';
 import ProductCard from '../ProductCard/ProductCard';
 import ProductService from '../../Services/ProductService';
-import Banner from './Banner ';
+import Banner from './Banner';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import './Home.css';
+
 
 const underlineVariants = (width) => ({
   initial: { width: 0 },

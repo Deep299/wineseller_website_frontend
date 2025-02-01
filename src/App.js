@@ -7,6 +7,9 @@ import './App.css';
 import Wishlist from './pages/Single Pages/Wishlist'; 
 import ProductDetails from './pages/Single Pages/ProductDetails';
 import BlankPage from './pages/BlankPage';
+import Shipping from './pages/Shipping/Shipping';
+import Payment from './pages/Payment/Payment';
+import PaymentSuccess from './pages/Payment/PaymentSuccess';
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
             <Route path="/Wishlist" element={<Wishlist />} />
             <Route path="/product/:productId" element={<ProductDetails />} />
             <Route path="/BlankPage" element={<BlankPage />} />
+            <Route path="/shipping" element={<Shipping />} />
+            <Route path="/payment" element={<Payment />} />
+             <Route path="/payment-success" element={<PaymentSuccess />} />
             </Routes>
         </Router>
     );

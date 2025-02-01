@@ -8,6 +8,10 @@ const Cart = () => {
   const [products, setProduct] = useState(null);
   const navigate = useNavigate();
 
+  const handleCheckout = () => {
+      navigate('/shipping', { state: { totalPrice } });
+  };
+
   useEffect(() => {
     const cartProduct = localStorage.getItem('cartProducts');
     if (cartProduct) {
@@ -27,6 +31,7 @@ const Cart = () => {
     setProduct(updatedProducts);
     localStorage.setItem('cartProducts', JSON.stringify(updatedProducts));
   };
+  let totalPrice = 0;
   return (
     <div>
       <header className="cart-header">
@@ -35,12 +40,15 @@ const Cart = () => {
       <h1>Cart</h1>
       {products && products.length > 0 ? (
           <div className="cart-container">
-        {products.map((product, index) => (
+        {products.map((product, index) => {
+          const productTotalPrice = product.price * product.quantity;
+          totalPrice += productTotalPrice;
+          return (
             <div key={index} className="cart-item">
               <h2>{product.name}</h2>
               <img src={product.img} alt={product.name} />
               <p>{product.description}</p>
-                <p>Price: ${product.price * product.quantity}</p>
+                <p>Price: ${productTotalPrice.toFixed(2)}</p>
                 <div className="quantity-controls">
                 <button className="quantity-button" onClick={() => handleQuantityChange(index, product.quantity - 1)}>
                   <FontAwesomeIcon icon={faMinus} />
@@ -56,7 +64,12 @@ const Cart = () => {
                 </button>
               </div>
             </div>
-          ))}
+          );
+  })}
+ <h3>Total Price: ${totalPrice.toFixed(2)}</h3>
+<button onClick={handleCheckout} className="checkout-button">
+            Checkout
+          </button>
         </div>
       )  : (
         <p>No product in the cart.</p>

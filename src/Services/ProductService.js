@@ -1,4 +1,3 @@
-import config from '../config.js';
 import products from '../assets/JesonSet/Product.json';
   
   class ProductService {
@@ -38,6 +37,7 @@ import products from '../assets/JesonSet/Product.json';
       }
   
       localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+      this.notifyCartChange();
     }
 
 
@@ -52,10 +52,20 @@ import products from '../assets/JesonSet/Product.json';
           cartProducts.splice(existingProductIndex, 1);
         }
         localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+        this.notifyCartChange();
       }
   
       return cartProducts;
     }
+    static notifyCartChange() {
+    const event = new Event('cartChange');
+    window.dispatchEvent(event);
+  }   
+
+  static notifyWishlistChange() {
+    const event = new Event('WishlistChange');
+    window.dispatchEvent(event);
+  }   
 
     static handleAddToWishlist(product,Inventory) {
       const wishlistProducts = JSON.parse(localStorage.getItem('wishlistProducts')) || [];
@@ -72,10 +82,12 @@ import products from '../assets/JesonSet/Product.json';
           size: Inventory.size,
         });
         localStorage.setItem('wishlistProducts', JSON.stringify(wishlistProducts));
+        this.notifyWishlistChange();
       }
       else{
         wishlistProducts.splice(existingProductIndex, 1);
         localStorage.setItem('wishlistProducts', JSON.stringify(wishlistProducts));
+        this.notifyWishlistChange();
       }
     }
   }
