@@ -1,4 +1,4 @@
-.login-wrapper {
+.register-wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -11,7 +11,7 @@
   background-color: rgba(0, 0, 0, 0.5); /* Optional: Add a semi-transparent background */
 }
 
-.login-container {
+.register-container {
   width: 100%;
   max-width: 400px;
   padding: 20px;
@@ -22,29 +22,30 @@
   z-index: 2;
 }
 
-.login-form {
+.register-form {
   display: flex;
   flex-direction: column;
 }
 
-.login-form h2 {
+.register-form h2 {
   margin-bottom: 20px;
   text-align: center;
 }
 
-.login-form label {
+.register-form label {
   margin-bottom: 10px;
   font-weight: bold;
 }
 
-.login-form input {
+.register-form input {
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-.login-button {
+.send-otp-button,
+.register-button {
   padding: 10px;
   background-color: #4CAF50;
   color: white;
@@ -52,9 +53,11 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  margin-top: 10px;
 }
 
-.login-button:hover {
+.send-otp-button:hover,
+.register-button:hover {
   background-color: #45a049;
 }
 
@@ -62,18 +65,34 @@
   color: red;
   margin-bottom: 10px;
 }
-
-.login-options {
+.otp-options {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
   margin-top: 10px;
 }
 
-.login-options a {
-  color: #4CAF50;
-  text-decoration: none;
+.otp-options button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
 }
 
-.login-options a:hover {
-  text-decoration: underline;
+.otp-options button:hover {
+  background-color: #45a049;
+}
+
+.otp-options button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.timer {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
 }

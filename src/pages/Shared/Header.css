@@ -64,7 +64,7 @@
 .home-header .header-icons .cart-count {
   position: absolute;
   top: 25px;
-  right: 145px;
+  right: 130px;
   background-color: red;
   color: white;
   border-radius: 50%;
@@ -76,11 +76,66 @@
 .home-header .header-icons .Wishlist-count {
   position: absolute;
   top: 25px;
-  right: 90px;
+  right: 80px;
   background-color: red;
   color: white;
   border-radius: 50%;
   padding: 0px 7px;
   font-size: 13px;
   font-weight: bold;
+}
+
+.list-view {
+  position: absolute;
+  top: 20px;
+  right: -34px;
+  background-color: white;
+  box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.list-view ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list-view ul li {
+  padding: 10px 20px;
+}
+
+.list-view ul li a,
+.list-view ul li button {
+  text-decoration: none;
+  color: black;
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.list-view ul li a:hover,
+.list-view ul li button:hover {
+  background-color: red;
+  color: white; 
+}
+
+.profile-icon-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.username {
+  margin-top: 5px;
+  font-weight: bold;
+  color :#ff0000;
+}
+
+.profile-icon-container .icon.active {
+  color: red;
 }

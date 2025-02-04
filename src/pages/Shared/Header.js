@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
+import {jwtDecode} from 'jwt-decode';
 import './Header.css'; 
 
 const Header = () => {
@@ -12,6 +13,10 @@ const Header = () => {
   const [hasProductsInWishlist, setHasProductsInWishlist] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [WishlistCount, setWishlistCount] = useState(0);
+  const [showList, setShowList] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+
 
   const checkCartProducts = () => {
     const cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
@@ -24,9 +29,27 @@ const Header = () => {
     setWishlistCount(WishlistProducts.length);
   };
 
+  const checkUserLogin = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+      try {
+        const decodedToken = jwtDecode(token);
+        const storedUsername = decodedToken.username; // Assuming the username is stored in the token payload
+        setUsername(storedUsername);
+      } catch (error) {
+        console.error('Invalid token:', error);
+        setIsLoggedIn(false);
+      }
+    } else {
+      setIsLoggedIn(false);
+    }
+  };  
+
   useEffect(() => {
     checkCartProducts();
     checkWishlistProducts();
+    checkUserLogin();
 
     const handleStorageChange = () => {
       checkCartProducts();
@@ -56,6 +79,11 @@ const Header = () => {
       default:
         return;
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
   };
 
   const iconVariants = {
@@ -119,15 +147,37 @@ const Header = () => {
            <FontAwesomeIcon icon={faHeart} />
            {WishlistCount > 0 && <span className="Wishlist-count">{WishlistCount}</span>}
         </motion.i>
-          <motion.i
-          onClick={() => handleCartIconClick('Profile')}
-          variants={iconVariants}
-          whileHover="hover"
-          initial="initial"
-          transition={{ duration: 0.3 }}
+        <motion.div
+          onMouseEnter={() => setShowList(true)}
+          onMouseLeave={() => setShowList(false)}
+          className="profile-icon-container"
         >
-          <FontAwesomeIcon icon={faUser} />
-        </motion.i>
+          <motion.i
+            onClick={() => handleCartIconClick('Profile')}
+            variants={iconVariants}
+            whileHover="hover"
+            initial="initial"
+            transition={{ duration: 0.3 }}
+            className={`icon ${isLoggedIn ? 'active' : ''}`}
+          >
+            <FontAwesomeIcon icon={faUser} />
+          </motion.i>
+          {isLoggedIn && <span className="username">{username}</span>}
+          {showList && (
+            <div className="list-view">
+              <ul>
+                {isLoggedIn ? (
+                  <li><button onClick={handleLogout}>Logout</button></li>
+                ) : (
+                  <>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                  </>
+                )}
+              </ul>
+            </div>
+          )}
+        </motion.div>
       </div>
     </header>
   );
