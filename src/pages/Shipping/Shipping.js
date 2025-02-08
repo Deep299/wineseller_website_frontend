@@ -40,26 +40,13 @@ const Shipping = () => {
       country,
     };
     localStorage.setItem('shippingDetails', JSON.stringify(shippingDetails));
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}payment/create-payment-intent`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ amount: Math.round(totalPrice) }),
-      });
+    const vat = totalPrice * 0.2;
+    const deliveryCharges = 20;
+    const finalPrice = totalPrice + vat + deliveryCharges;
 
-      const data = await response.json();
-
-      if (response.ok) {
-        navigate('/payment', { state: { paymentIntent: data } });
-      } else {
-        // Handle error
-        console.error('Error creating payment intent:', data);
-      }
-    } catch (error) {
-      console.error('An error occurred:', error);
-    }
+    navigate('/pricing-bifurcation', {
+      state: { totalPrice, vat, deliveryCharges, finalPrice },
+    });
   };
 
   return (

@@ -1,4 +1,3 @@
-// filepath: /d:/WineCeller/wineseller_website_frontend/src/pages/Payment/Payment.js
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Elements } from '@stripe/react-stripe-js';

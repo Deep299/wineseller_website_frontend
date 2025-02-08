@@ -1,10 +1,18 @@
-// filepath: /d:/WineCeller/wineseller_website_frontend/src/pages/Payment/PaymentSuccess.js
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const PaymentSuccess = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { paymentIntent } = location.state || {};
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/');
+    }, 10000); // Redirect after 10 seconds
+
+    return () => clearTimeout(timer); // Cleanup the timer on component unmount
+  }, [navigate]);
 
   return (
     <div>
@@ -18,6 +26,7 @@ const PaymentSuccess = () => {
       ) : (
         <p>No payment details found.</p>
       )}
+       <p>Redirecting to home page in 10 seconds...</p>
     </div>
   );
 };

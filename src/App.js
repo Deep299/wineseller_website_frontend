@@ -10,6 +10,7 @@ import ProductDetails from './pages/Single Pages/ProductDetails';
 import BlankPage from './pages/BlankPage';
 import Shipping from './pages/Shipping/Shipping';
 import Payment from './pages/Payment/Payment';
+import PricingBifurcation from './pages/Payment/PricingBifurcation';
 import PaymentSuccess from './pages/Payment/PaymentSuccess';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/BlankPage" element={<BlankPage />} />
             <Route path="/shipping" element={<Shipping />} />
             <Route path="/payment" element={<Payment />} />
+            <Route path="/pricing-bifurcation" element={<PricingBifurcation />} />
              <Route path="/payment-success" element={<PaymentSuccess />} />
             </Routes>
         </Router>
