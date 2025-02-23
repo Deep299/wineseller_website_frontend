@@ -25,7 +25,7 @@ import products from '../assets/JesonSet/Product.json';
         cartProducts[existingProductIndex].quantity += 1;
       } else {
         cartProducts.push({ 
-          id: product.id,
+          id: product.ProductId,
           name: product.name,
           img: product.img,
           description: product.description,
@@ -73,7 +73,7 @@ import products from '../assets/JesonSet/Product.json';
   
       if (existingProductIndex === -1) {
         wishlistProducts.push({ 
-          id: product.id,
+          id: product.ProductId,
           name: product.name,
           img: product.img,
           description: product.description,

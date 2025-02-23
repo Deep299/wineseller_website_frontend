@@ -93,7 +93,7 @@ const Home = () => {
           .filter(product => product.category === selectedCategory)
           .slice(0, 5) 
           .map(product => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.ProductId} product={product} />
           ))}
       </div>
       <footer className="footer">
