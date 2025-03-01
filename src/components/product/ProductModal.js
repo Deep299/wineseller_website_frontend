@@ -68,40 +68,13 @@ function ProductModal({ product, currency, discountedPrice, finalProductPrice, f
       <div className="row">
         <div className="col-md-5 col-sm-12 col-xs-12">
           <div className="product-large-image-wrapper">
-            <Swiper options={gallerySwiperParams}>
-              {product.image &&
-                product.image.map((img, i) => {
-                  return (
-                    <SwiperSlide key={i}>
-                      <div className="single-image">
+          <div className="single-image">
                         <img
-                          src={process.env.PUBLIC_URL + img}
+                          src={process.env.PUBLIC_URL + product.img}
                           className="img-fluid"
                           alt="Product"
                         />
                       </div>
-                    </SwiperSlide>
-                  );
-                })}
-            </Swiper>
-          </div>
-          <div className="product-small-image-wrapper mt-15">
-            <Swiper options={thumbnailSwiperParams}>
-              {product.image &&
-                product.image.map((img, i) => {
-                  return (
-                    <SwiperSlide key={i}>
-                      <div className="single-image">
-                        <img
-                          src={process.env.PUBLIC_URL + img}
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-                    </SwiperSlide>
-                  );
-                })}
-            </Swiper>
           </div>
         </div>
         <div className="col-md-7 col-sm-12 col-xs-12">
@@ -131,98 +104,30 @@ function ProductModal({ product, currency, discountedPrice, finalProductPrice, f
               ""
             )}
             <div className="pro-details-list">
-              <p>{product.shortDescription}</p>
+              <p>{product.desc}</p>
             </div>
-
-            {product.variation ? (
-              <div className="pro-details-size-color">
-                <div className="pro-details-color-wrap">
-                  <span>Color</span>
-                  <div className="pro-details-color-content">
-                    {product.variation.map((single, key) => {
-                      return (
-                        <label
-                          className={`pro-details-color-content--single ${single.color}`}
-                          key={key}
-                        >
-                          <input
-                            type="radio"
-                            value={single.color}
-                            name="product-color"
-                            checked={
-                              single.color === selectedProductColor
-                                ? "checked"
-                                : ""
-                            }
-                            onChange={() => {
-                              setSelectedProductColor(single.color);
-                              setSelectedProductSize(single.size[0].name);
-                              setProductStock(single.size[0].stock);
-                              setQuantityCount(1);
-                            }}
-                          />
-                          <span className="checkmark"></span>
-                        </label>
-                      );
-                    })}
-                  </div>
-                </div>
-                <div className="pro-details-size">
+            <div className="pro-details-size-color">
+            <div className="pro-details-size">
                   <span>Size</span>
                   <div className="pro-details-size-content">
-                    {product.variation &&
-                      product.variation.map(single => {
-                        return single.color === selectedProductColor
-                          ? single.size.map((singleSize, key) => {
-                              return (
-                                <label
+                  <label
                                   className={`pro-details-size-content--single`}
-                                  key={key}
                                 >
-                                  <input
+                                    <input
                                     type="radio"
-                                    value={singleSize.name}
+                                    value={product.size}
                                     checked={
-                                      singleSize.name ===
-                                      selectedProductSize
-                                        ? "checked"
-                                        : ""
+                                    "checked"
                                     }
-                                    onChange={() => {
-                                      setSelectedProductSize(
-                                        singleSize.name
-                                      );
-                                      setProductStock(singleSize.stock);
-                                      setQuantityCount(1);
-                                    }}
-                                  />
-                                  <span className="size-name">
-                                    {singleSize.name}
+                                    />
+                                    <span className="size-name">
+                                    {product.size}
                                   </span>
-                                </label>
-                              );
-                            })
-                          : "";
-                      })}
+                                   </label>
                   </div>
                 </div>
               </div>
-            ) : (
-              ""
-            )}
-            {product.affiliateLink ? (
-              <div className="pro-details-quality">
-                <div className="pro-details-cart btn-hover">
-                  <a
-                    href={product.affiliateLink}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    Buy Now
-                  </a>
-                </div>
-              </div>
-            ) : (
+
               <div className="pro-details-quality">
                 <div className="cart-plus-minus">
                   <button
@@ -303,7 +208,6 @@ function ProductModal({ product, currency, discountedPrice, finalProductPrice, f
                   </button>
                 </div>
               </div>
-            )}
           </div>
         </div>
       </div>

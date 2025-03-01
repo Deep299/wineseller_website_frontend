@@ -42,7 +42,7 @@ const IconGroup = ({ iconWhiteClass }) => {
         </div>
       </div>
       <div className="same-style header-wishlist">
-        <Link to={process.env.PUBLIC_URL + "/"}>
+        <Link to={process.env.PUBLIC_URL + "/Wishlist"}>
           <i className="pe-7s-like" />
           <span className="count-style">
             {wishlistItems && wishlistItems.length ? wishlistItems.length : 0}
@@ -60,7 +60,7 @@ const IconGroup = ({ iconWhiteClass }) => {
         <MenuCart />
       </div>
       <div className="same-style cart-wrap d-block d-lg-none">
-        <Link className="icon-cart" to={process.env.PUBLIC_URL + "/"}>
+        <Link className="icon-cart" to={process.env.PUBLIC_URL + "/Cart"}>
           <i className="pe-7s-shopbag" />
           <span className="count-style">
             {cartItems && cartItems.length ? cartItems.length : 0}

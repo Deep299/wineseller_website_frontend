@@ -17,7 +17,8 @@ import { Provider } from 'react-redux';
 
 const fetchProducts = async () => {
   try {
-    const response = await fetch('http://16.171.114.118/api/product/get');
+    /* const response = await fetch('https://enterprise-api.shop/api/product/get'); */
+    const response = await fetch('http://localhost:5001/api/product/get');
     const products = await response.json();
     store.dispatch(setProducts(products));
   } catch (error) {

@@ -85,7 +85,7 @@ const MenuCart = () => {
             </h4>
           </div>
           <div className="shopping-cart-btn btn-hover text-center">
-            <Link className="default-btn" to={process.env.PUBLIC_URL + "/"}>
+            <Link className="default-btn" to={process.env.PUBLIC_URL + "/Cart"}>
               view cart
             </Link>
             <Link

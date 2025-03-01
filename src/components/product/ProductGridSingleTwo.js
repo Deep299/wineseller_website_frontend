@@ -28,13 +28,11 @@ const ProductGridSingleTwo = ({
     <Fragment>
       <div className={clsx("product-wrap-2", spaceBottomClass, colorClass)}>
         <div className="product-img">
-          <Link to={process.env.PUBLIC_URL + "/product/" + product.ProductId}>
             <img
               className="default-img"
               src={process.env.PUBLIC_URL + product.img}
               alt=""
             />
-          </Link>
           {product.discount  ? (
             <div className="product-img-badges">
               {product.discount ? (

@@ -15,6 +15,8 @@ import PricingBifurcation from './pages/Payment/PricingBifurcation';
 import PaymentSuccess from './pages/Payment/PaymentSuccess';
 
 const HomeNew = lazy(() => import("./NewPages/Home/Home"));
+const WishlistNew = lazy(() => import("./NewPages/other/Wishlist"));
+const CartNew = lazy(() => import("./NewPages/other/Cart"));
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
              <Routes>
              <Route exact  path="/"  element={<HomeNew />} />
              <Route path="/Home"  element={<HomeNew />} />
+             <Route path="/Wishlist"  element={<WishlistNew />} />
+             <Route path="/Cart"  element={<CartNew />} />
              </Routes>
              </Suspense>
              </ScrollToTop>
